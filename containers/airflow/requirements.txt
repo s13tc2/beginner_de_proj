@@ -1,0 +1,4 @@
+black==22.8.0
+apache-airflow-client==2.3.0
+requests 
+fredapi
