@@ -150,7 +150,7 @@ sudo chmod 666 /var/run/docker.sock
 sudo apt install make
 
 echo 'Clone git repo to EC2'
-cd /home/ubuntu && git clone https://github.com/josephmachado/beginner_de_project.git && cd beginner_de_project && make perms
+cd /home/ubuntu && git clone https://github.com/s13tc2/beginner_de_proj.git && cd beginner_de_project && make perms
 
 echo 'Setup Airflow environment variables'
 echo "
