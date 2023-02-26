@@ -7,7 +7,7 @@ docker-spin-up:
 	docker compose  --env-file env up airflow-init && docker compose --env-file env up --build -d
 
 perms:
-	mkdir -p logs plugins temp && sudo chmod -R u=rwx,g=rwx,o=rwx logs plugins temp dags tests migrations spectrum_tables
+	mkdir -p logs plugins temp && sudo chmod -R u=rwx,g=rwx,o=rwx logs plugins temp dags
 
 up: get-data perms docker-spin-up
 
