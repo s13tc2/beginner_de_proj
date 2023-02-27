@@ -31,7 +31,7 @@ os.environ['AWS_SECRET_ACCESS_KEY'] = "/PS57lDw6XWejCvS+XDWOpHGmAhW25JxGHpzmie4"
 os.environ['AWS_REGION'] = "us-east-1"
 
 dag = DAG(
-    "user_behaviour",
+    "fred",
     default_args=default_args,
     max_active_runs=1,
 )
@@ -42,7 +42,7 @@ sp500_to_raw_data_lake = PythonOperator(
     python_callable=_local_to_s3,
     op_kwargs={
         "file_name": "/opt/airflow/data/sp500.csv",
-        "key": "raw/financial_data/{{ ds }}/movie.csv",
+        "key": "raw/financial_data/{{ ds }}/sp500.csv",
         "bucket_name": BUCKET_NAME,
     },
 )
