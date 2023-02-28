@@ -157,7 +157,7 @@ echo "
 AIRFLOW_CONN_POSTGRES_DEFAULT=postgres://airflow:airflow@localhost:5439/airflow
 AIRFLOW_CONN_AWS_DEFAULT=aws://?region_name=${var.aws_region}
 AIRFLOW_VAR_BUCKET=${aws_s3_bucket.sde-data-lake.id}
-" > .env
+" > env
 
 echo 'Start Airflow containers'
 make up
