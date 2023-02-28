@@ -1,2 +1,2 @@
 AIRFLOW_CONN_AWS_DEFAULT=aws://
-AIRFLOW_VAR_BUCKET=aws_s3_bucket.sde_data_lake.name
+AIRFLOW_VAR_BUCKET=aws_s3_bucket.sde_data_lake.namea

@@ -37,6 +37,8 @@ dag = DAG(
     max_active_runs=1,
 )
 
+BUCKET_NAME = 'sde-data-lake-20230228020124787300000002'
+
 sp500_to_raw_data_lake = PythonOperator(
     dag=dag,
     task_id="sp500_to_raw_data_lake",
