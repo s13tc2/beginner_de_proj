@@ -26,8 +26,8 @@ default_args = {
 
 import os
 
-os.environ['AWS_ACCESS_KEY_ID'] = "AKIAUIN5LCODNOP6CFUA"
-os.environ['AWS_SECRET_ACCESS_KEY'] = "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"
+os.environ['AWS_ACCESS_KEY_ID'] = 
+os.environ['AWS_SECRET_ACCESS_KEY'] = 
 os.environ['AWS_REGION'] = "us-east-1"
 
 dag = DAG(
