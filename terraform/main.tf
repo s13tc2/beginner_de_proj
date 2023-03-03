@@ -150,17 +150,13 @@ sudo chmod 666 /var/run/docker.sock
 sudo apt install make
 
 echo 'Clone git repo to EC2'
-cd /home/ubuntu && git clone https://github.com/s13tc2/beginner_de_proj.git 
-
-cd beginner_de_project && sudo rm -rf env 
+cd /home/ubuntu && git clone https://github.com/s13tc2/beginner_de_proj.git && cd beginner_de_project && sudo rm -rf env && make perms
 
 echo "
 AIRFLOW_CONN_POSTGRES_DEFAULT=postgres://airflow:airflow@localhost:5439/airflow
 AIRFLOW_CONN_AWS_DEFAULT=aws://?region_name=${var.aws_region}
 AIRFLOW_VAR_BUCKET=${aws_s3_bucket.sde-data-lake.id}
 " > env
-
-make perms
 
 
 echo 'Start Airflow containers'
