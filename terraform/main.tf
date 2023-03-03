@@ -159,6 +159,8 @@ AIRFLOW_CONN_AWS_DEFAULT=aws://?region_name=${var.aws_region}
 AIRFLOW_VAR_BUCKET=${aws_s3_bucket.sde-data-lake.id}
 " > env
 
+mv env ~/beginner_de_project
+
 echo 'Start Airflow containers'
 make up
 
