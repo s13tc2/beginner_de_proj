@@ -4,10 +4,6 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 4.16"
     }
-    redshift = {
-      source  = "brainly/redshift"
-      version = "1.0.2"
-    }
   }
 
   required_version = ">= 1.2.0"
@@ -45,12 +41,31 @@ resource "aws_iam_role" "sde_ec2_iam_role" {
     ]
   })
 
-  managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonS3FullAccess"]
+  managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonS3FullAccess", "arn:aws:iam::aws:policy/AmazonEMRFullAccessPolicy_v2", "arn:aws:iam::aws:policy/AmazonRedshiftAllCommandsFullAccess"]
 }
 
 resource "aws_iam_instance_profile" "sde_ec2_iam_role_instance_profile" {
   name = "sde_ec2_iam_role_instance_profile"
   role = aws_iam_role.sde_ec2_iam_role.name
+}
+
+# IAM role for Redshift to be able to read data from S3 via Spectrum
+resource "aws_iam_role" "sde_redshift_iam_role" {
+  name = "sde_redshift_iam_role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "redshift.amazonaws.com"
+        }
+      },
+    ]
+  })
+
+  managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess", "arn:aws:iam::aws:policy/AWSGlueConsoleFullAccess"]
 }
 
 # Create security group for access to EC2 from your Anywhere
@@ -111,6 +126,7 @@ data "aws_ami" "ubuntu" {
 
   owners = ["099720109477"] # Canonical
 }
+
 
 resource "aws_instance" "sde_ec2" {
   ami           = data.aws_ami.ubuntu.id

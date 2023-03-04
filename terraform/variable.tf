@@ -1,4 +1,3 @@
-
 ## AWS account level config: region
 variable "aws_region" {
   description = "AWS region"
@@ -18,13 +17,6 @@ variable "key_name" {
   description = "EC2 key name"
   type        = string
   default     = "sde-key"
-}
-
-## AWS EMR node type and auto termination time (EMR is expensive!)
-variable "instance_type" {
-  description = "Instance type for EMR and EC2"
-  type        = string
-  default     = "m4.xlarge"
 }
 
 variable "auto_termination_timeoff" {
