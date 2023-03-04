@@ -15,6 +15,7 @@ os.environ['AWS_REGION'] = "us-east-1"
 
 # Config
 BUCKET_NAME = Variable.get("BUCKET")
+print('BUCKET_NAME: ', BUCKET_NAME)
 
 # DAG definition
 default_args = {
