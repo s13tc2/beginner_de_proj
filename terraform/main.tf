@@ -150,9 +150,9 @@ sudo chmod 666 /var/run/docker.sock
 sudo apt install make
 
 echo 'Clone git repo to EC2'
-cd /home/ubuntu && git clone https://github.com/s13tc2/beginner_de_proj.git && cd beginner_de_project && make perms
+cd /home/ubuntu && git clone https://github.com/s13tc2/beginner_de_proj.git && cd beginner_de_proj && make perms
 
-cd /home/ubuntu/beginner_de_project 
+echo 'Setup Airflow environment variables'
 echo "
 AIRFLOW_CONN_POSTGRES_DEFAULT=postgres://airflow:airflow@localhost:5439/airflow
 AIRFLOW_CONN_AWS_DEFAULT=aws://?region_name=${var.aws_region}
@@ -167,6 +167,7 @@ echo "-------------------------END AIRFLOW SETUP---------------------------"
 EOF
 
 }
+
 
 # Setting as budget monitor, so we don't go over 10 USD per month
 resource "aws_budgets_budget" "cost" {
